@@ -21,7 +21,6 @@ namespace SRTTimeShifter
         public void RealMainAsync(string[] args)
         {
             System.Reflection.Assembly asm = System.Reflection.Assembly.GetExecutingAssembly();
-         //   string agent = "SRTTimeShifter";
             Console.WriteLine($"{asm.GetName().Name} {asm.GetName().Version}");
 
             string srtFile = string.Empty;

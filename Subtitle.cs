@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace SRTTimeShifter
 {
+    /// <summary>
+    /// Representation of a SRT file entry
+    /// </summary>
+    /// 
     public class Subtitle
     {
         public string timestamp { get; set; }
@@ -20,6 +24,10 @@ namespace SRTTimeShifter
             this.timestamp = timestamp;
         }
 
+        /// <summary>
+        /// Builds the string representation of the given subtitle in SRT format.
+        /// </summary>
+        /// <returns></returns>
         public string buildString()
         {
             string str = num + "\n" + timestamp + "\n";
@@ -30,6 +38,10 @@ namespace SRTTimeShifter
             return str;
         }
 
+        /// <summary>
+        /// Adds millisecods to the given subtitle entry
+        /// </summary>
+        /// <param name="msOffset">Can also be negative.</param>
         public void addMs(int msOffset)
         {
             string[] times = timestamp.Split(" --> ");

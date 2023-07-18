@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading.Tasks;
 
 namespace SRTTimeShifter
 {
     public class SRTTimeShifter
     {
-        private List<Subtitle> subtitles;
+        private List<SubtitleEntry> subtitles;
 
         static void Main(string[] args)
         {
@@ -43,7 +39,7 @@ namespace SRTTimeShifter
                 return;
             }
 
-            subtitles = new List<Subtitle>();
+            subtitles = new List<SubtitleEntry>();
 
             Console.WriteLine($"Loading original file {srtFile}");
 
@@ -51,7 +47,7 @@ namespace SRTTimeShifter
             if (!fileRead)
                 return;
 
-            foreach (Subtitle s in subtitles)
+            foreach (SubtitleEntry s in subtitles)
                 s.addMs(shiftMS);
 
             string directoryName = Path.GetDirectoryName(srtFile);
@@ -96,7 +92,7 @@ namespace SRTTimeShifter
                                 ll = file.ReadLine();
                             }
 
-                            subtitles.Add(new Subtitle(line, timestamp, lines));
+                            subtitles.Add(new SubtitleEntry(line, timestamp, lines));
                         }
                     }
                 }
@@ -118,7 +114,7 @@ namespace SRTTimeShifter
             {
                 using (StreamWriter streamWriter = new StreamWriter(srtFile))
                 {
-                    foreach (Subtitle sub in subtitles)
+                    foreach (SubtitleEntry sub in subtitles)
                     {
                         streamWriter.WriteLine(sub.buildString());
                     }
